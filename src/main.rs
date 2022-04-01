@@ -312,7 +312,6 @@ impl Application for State {
 
                         ui.horizontal(|ui| {
 
-                        
                             let mut selected = i == self.selected;
                             ui.checkbox(&mut selected, &format!("{}", i));
                             if selected {
@@ -322,12 +321,12 @@ impl Application for State {
 
                             if ui.add_enabled(i != 0, Button::new("/\\")).clicked() {
                                 self.frames.swap(i, i-1);
-                                self.selected -= 1;
+                                self.selected = i - 1;
                             }
 
                             if ui.add_enabled(i != (self.frames.len()-1), Button::new("\\/")).clicked() {
                                 self.frames.swap(i, i+1);
-                                self.selected += 1;
+                                self.selected = i+1;
                             }
 
                             if ui.button("+").clicked() {
